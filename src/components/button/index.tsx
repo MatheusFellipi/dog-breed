@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
+import { InputHTMLAttributes } from "react";
 
-type InputProps = {
+interface ButtonsProps extends InputHTMLAttributes<HTMLButtonElement> {
   type: "button" | "submit" | "reset" | undefined;
   label: string;
-  onClick?: () => void;
 };
 
-export function Button({ onClick, label, type }: InputProps) {
+export function Button({ onClick, label, type }: ButtonsProps) {
   return (
     <Container>
       <button type={type} onClick={onClick}>
