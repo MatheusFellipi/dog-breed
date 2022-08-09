@@ -4,7 +4,9 @@ import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { useRouter } from "next/router";
 
 type UserType = {
-  token: string;
+  user: {
+    token: string;
+  };
 };
 
 interface AuthContextData {
@@ -22,13 +24,17 @@ interface AuthProviderProps {
 export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   const route = useRouter();
   const usersInitial = {
-    token: "",
+    user: {
+      token: "",
+    },
   } as UserType;
 
   const [user, setUser] = useState<UserType>(usersInitial);
 
   const signin = (data: UserType) => {
-    setCookie(null, "dogbreed:token", data.token, {
+    console.log(data.user.token, "aqui e o auth");
+
+    setCookie(null, "dogbreed:token", data.user.token, {
       maxAge: 30 * 24 * 60 * 60,
       path: "/",
     });
@@ -39,7 +45,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   const signout = () => {
     setUser(usersInitial);
     destroyCookie(null, "dogbreed:token");
-    route.push("/login");
+    route.push("/");
   };
 
   return (
