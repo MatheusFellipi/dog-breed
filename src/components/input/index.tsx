@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 type InputProps = {
-  type: "text" | undefined;
+  type: "text" | "email" | undefined;
   label: string;
   valeu: string;
   onCharge: () => void;
