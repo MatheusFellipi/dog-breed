@@ -1,65 +1,49 @@
 import type { NextPage } from "next";
-import { Global, css } from "@emotion/react";
+import { FormEvent } from "react";
+import styled from "@emotion/styled";
 
-const GlobalStyles = css`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    background: #f8f0f1;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  html {
-    @media (max-width: 1080px) {
-      font-size: 93.75%; /*15px*/
-    }
-    @media (max-width: 720px) {
-      font-size: 87.5%; /*14px*/
-    }
-  }
-
-  body,
-  input,
-  textarea,
-  button {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  strong {
-    font-weight: 600;
-  }
-
-  button {
-    cursor: pointer;
-    transition: all 0.5s;
-    :hover {
-      filter: brightness(0.8);
-    }
-  }
-
-  [disabled] {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
+import { Input } from "../components/input";
+import { Button } from "../components/button";
 
 const Home: NextPage = () => {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+  }
+
   return (
-    <div>
-      <Global styles={GlobalStyles} />
-    </div>
+    <Container>
+      <form method="post" onSubmit={handleSubmit}>
+        <Input label="Email" type="email" valeu="" onCharge={() => {}} />
+        <Button label="Entra" type="submit"  />
+      </form>
+    </Container>
   );
+
 };
 
 export default Home;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  width: 100vw;
+  > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+
+    background-color: #191d21;
+    padding: 1rem;
+    max-width: 550px;
+    width: 450px;
+    height: 250px;
+
+    border-radius: 1rem;
+  
+  }
+`;
