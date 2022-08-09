@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { type } from "os";
-import { FormEvent, InputHTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -20,7 +20,12 @@ export function Input({
 
   return (
     <Label className="form__group field">
-      <input className="form__field" {...rest} />
+      <input
+        className="form__field"
+        name={name}
+        {...rest}
+        onChange={onChange}
+      />
       <label htmlFor={label} className="form__label">
         {label}
       </label>
