@@ -43,9 +43,9 @@ const GlobalStyles = css`
   button {
     cursor: pointer;
     transition: all 0.5s;
-    :hover {
+    /* :hover {
       filter: brightness(0.8);
-    }
+    } */
   }
 
   [disabled] {
