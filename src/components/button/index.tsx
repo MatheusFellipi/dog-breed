@@ -28,7 +28,6 @@ const Container = styled.div`
     transition: 0.7s;
     :hover {
       background-color: #11998e;
-      color: #fff;
     }
   }
 `;
