@@ -1,28 +1,26 @@
 import styled from "@emotion/styled";
+import { type } from "os";
+import { FormEvent, InputHTMLAttributes } from "react";
 
-type InputProps = {
-  type: "text" | "email" | undefined;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  valeu: string;
-  onCharge: () => void;
-};
+}
 
-export function Input({ valeu, onCharge, label, type }: InputProps) {
+export function Input({
+  value,
+  onChange,
+  label,
+  type,
+  name,
+  ...rest
+}: InputProps) {
   if (type === undefined) {
     type = "text";
   }
 
   return (
     <Label className="form__group field">
-      <input
-        type={type}
-        className="form__field"
-        placeholder={label}
-        name={label}
-        id={label}
-        value={valeu}
-        onChange={onCharge}
-      />
+      <input className="form__field" {...rest} />
       <label htmlFor={label} className="form__label">
         {label}
       </label>
