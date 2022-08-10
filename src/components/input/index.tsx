@@ -26,6 +26,7 @@ export function Input({
         value={value}
         name={name}
         onChange={onChange}
+        {...rest}
       />
     </Label>
   );
