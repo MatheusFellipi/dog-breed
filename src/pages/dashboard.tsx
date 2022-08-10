@@ -21,7 +21,7 @@ const Dashboard: NextPage = () => {
   );
 
   return (
-    <div>
+    <>
       <Navbar></Navbar>
 
       <Filtros>
@@ -70,7 +70,7 @@ const Dashboard: NextPage = () => {
       </Filtros>
 
       <ImagePresentation data={data} isFetching={isFetching} />
-    </div>
+    </>
   );
 };
 
