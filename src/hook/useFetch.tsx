@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AxiosRequestConfig } from "axios";
 import { api } from "../services/axios";
 
-export function useFecth<T = unknown>(
+export function useFetch<T = unknown>(
   url: string,
   options?: AxiosRequestConfig
 ) {
@@ -22,7 +22,7 @@ export function useFecth<T = unknown>(
       .finally(() => {
         setIsFetching(false);
       });
-  }, []);
+  }, [url, options]);
 
-  return { data, isFetching, error };
+  return { data, isFetching, setIsFetching, setData, error };
 }
