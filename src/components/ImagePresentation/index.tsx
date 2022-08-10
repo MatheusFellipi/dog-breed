@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { CardImg } from "./CardIImg";
 
 export function ImagePresentation({}) {
   return (
@@ -49,10 +48,12 @@ const Section = styled.section`
   column-count: 6;
   padding: 0.5rem;
 
-  @media (max-width: 500px) {
+  @media (max-width: 320px) {
+    column-count: 2;
+  }
+  @media (max-width: 760px) {
     column-count: 3;
   }
-
   div img {
     display: block;
     max-width: 100%;
