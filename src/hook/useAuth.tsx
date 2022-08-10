@@ -32,7 +32,6 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   const [user, setUser] = useState<UserType>(usersInitial);
 
   const signin = (data: UserType) => {
-    console.log(data.user.token, "aqui e o auth");
 
     setCookie(null, "dogbreed:token", data.user.token, {
       maxAge: 30 * 24 * 60 * 60,
