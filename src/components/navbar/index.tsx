@@ -28,7 +28,7 @@ const Header = styled.header`
   }
 
   .headerContext {
-    max-width: 1520px;
+    max-width: 1220px;
     height: 5rem;
     margin: 0 auto;
     padding: 0 2rem;
@@ -36,7 +36,7 @@ const Header = styled.header`
     align-items: center;
 
     &::after {
-      top: 56px;
+      top: 59px;
       content: " ";
       height: 2px;
       border-radius: 3px 3px 0 0;
@@ -44,7 +44,17 @@ const Header = styled.header`
       position: absolute;
       bottom: 1px;
       left: 0;
-      background-color: #000000;
+      background-color: #603435;
+
+      @media (min-width: 1440px) {
+        top: 61px;
+      }
+      @media (max-width: 768px) {
+        top: 61px;
+      }
+      @media (max-width: 560px) {
+        top: 57px;
+      }
     }
 
     nav {
