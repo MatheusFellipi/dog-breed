@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import Image from "next/future/image";
+
 import { useState } from "react";
 import LoadingSpinner from "../Loading";
 
@@ -12,27 +14,36 @@ export function ImagePresentation({
   isFetching,
 }: ImagePresentationProps) {
   const [selectImg, setSelectImg] = useState("");
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   function handleClockImg(link: string) {
     setSelectImg(link);
+    setIsOpenModal(!isOpenModal);
+    if (isOpenModal === true) {
+      document.body.style.overflow = "visible";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
   }
 
   return (
     <>
-      {/* {isFetching ? (
+      {isFetching ? (
         <LoadingSpinner />
       ) : (
         <Section>
           {data?.list.map((item: string, index: number) => (
-            <div key={index} onClick={handleClockImg}>
+            <div key={index} onClick={() => handleClockImg(item)}>
               <img src={item} alt={item} />
             </div>
           ))}
         </Section>
-      )} */}
+      )}
 
-      <Modal>
+      <Modal isOpen={isOpenModal} onClick={() => handleClockImg("")}>
+        <button onClick={() => setIsOpenModal(false)}>X</button>
         <div className="modal_content">
-          <img src="https://i.pinimg.com/564x/f4/9a/d9/f49ad999b06bb65aa6b187a5b2937875.jpg" />
+          <img src={selectImg} />
         </div>
       </Modal>
     </>
@@ -40,9 +51,40 @@ export function ImagePresentation({
 }
 
 interface ModalProps {
-
+  isOpen: boolean;
 }
-const Modal = styled.div<ModalProps>``;
+
+const Modal = styled.div<ModalProps>`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50000;
+  background-color: rgba(0, 0, 0, 0.8);
+  button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.6rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+  .modal_content {
+    width: 40%;
+    img {
+      width: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
+`;
 
 const Section = styled.section`
   max-width: 1780px;
