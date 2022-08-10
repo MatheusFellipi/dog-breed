@@ -1,47 +1,49 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
+import LoadingSpinner from "../Loading";
 
-export function ImagePresentation({}) {
+type ImagePresentationProps = {
+  data: any;
+  isFetching: boolean;
+};
+
+export function ImagePresentation({
+  data,
+  isFetching,
+}: ImagePresentationProps) {
+  const [selectImg, setSelectImg] = useState("");
+  function handleClockImg(link: string) {
+    setSelectImg(link);
+  }
+
   return (
-    <Section>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-1.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-2.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-3.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-4.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-5.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-6.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-1.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-2.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-3.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-4.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-5.jpg" />
-      </div>
-      <div>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/64626/j-6.jpg" />
-      </div>
-    </Section>
+    <>
+      {/* {isFetching ? (
+        <LoadingSpinner />
+      ) : (
+        <Section>
+          {data?.list.map((item: string, index: number) => (
+            <div key={index} onClick={handleClockImg}>
+              <img src={item} alt={item} />
+            </div>
+          ))}
+        </Section>
+      )} */}
+
+      <Modal>
+        <div className="modal_content">
+          <img src="https://i.pinimg.com/564x/f4/9a/d9/f49ad999b06bb65aa6b187a5b2937875.jpg" />
+        </div>
+      </Modal>
+    </>
   );
 }
+
+interface ModalProps {
+
+}
+const Modal = styled.div<ModalProps>``;
+
 const Section = styled.section`
   max-width: 1780px;
   margin: 0 auto;
@@ -54,6 +56,7 @@ const Section = styled.section`
   @media (max-width: 760px) {
     column-count: 3;
   }
+
   div img {
     display: block;
     max-width: 100%;
