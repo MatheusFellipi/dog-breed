@@ -61,6 +61,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   height: 100vh;
   width: 100vw;
@@ -69,11 +70,12 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    border: solid 1px;
 
-    background-color: #191d21;
+    background-color: #ffffff;
     padding: 1rem;
     max-width: 550px;
-    width: 450px;
+    width: 350px;
     height: 250px;
 
     border-radius: 1rem;
