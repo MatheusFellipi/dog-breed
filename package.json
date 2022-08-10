@@ -11,9 +11,13 @@
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@types/react-infinite-scroller": "^1.2.3",
+    "axios": "^0.27.2",
     "next": "12.2.4",
+    "nookies": "^2.5.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-infinite-scroller": "^1.2.6"
   },
   "devDependencies": {
     "@types/node": "18.6.5",
