@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { Navbar } from "../components/navbar";
-import { useFecth } from "../hook/useFetch";
+import { useFetch } from "../hook/useFetch";
 import { parseCookies } from "nookies";
 import styled from "@emotion/styled";
 import { ImagePresentation } from "../components/ImagePresentation";
@@ -11,11 +11,14 @@ const Dashboard: NextPage = () => {
   const { ["dogbreed:token"]: token } = parseCookies();
   const [fill, setFill] = useState("chihuahua");
 
-  const { data } = useFecth("/list", {
-    headers: {
-      Authorization: token,
-    },
-  });
+  const { data, isFetching, setIsFetching, setData } = useFetch(
+    `/list?breed=${fill}`,
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
 
   return (
     <div>
@@ -27,22 +30,46 @@ const Dashboard: NextPage = () => {
         </div>
 
         <ul>
-          <li onClick={() => setFill("chihuahua")}>
+          <li
+            onClick={() => {
+              setFill("chihuahua");
+              setIsFetching(true);
+              setData({});
+            }}
+          >
             <p className={fill === "chihuahua" ? "active" : ""}>chihuahua</p>
           </li>
-          <li onClick={() => setFill("husky")}>
+          <li
+            onClick={() => {
+              setFill("husky");
+              setIsFetching(true);
+              setData({});
+            }}
+          >
             <p className={fill === "husky" ? "active" : ""}>husky</p>
           </li>
-          <li onClick={() => setFill("labrador")}>
+          <li
+            onClick={() => {
+              setFill("labrador");
+              setIsFetching(true);
+              setData({});
+            }}
+          >
             <p className={fill === "labrador" ? "active" : ""}>labrador</p>
           </li>
-          <li onClick={() => setFill("pug")}>
+          <li
+            onClick={() => {
+              setFill("pug");
+              setIsFetching(true);
+              setData({});
+            }}
+          >
             <p className={fill === "pug" ? "active" : ""}>pug</p>
           </li>
         </ul>
       </Filtros>
 
-      <ImagePresentation />
+      <ImagePresentation data={data} isFetching={isFetching} />
     </div>
   );
 };
@@ -54,13 +81,7 @@ const Filtros = styled.nav`
   justify-content: center;
   align-items: center;
   width: 100%;
-
-  @media (max-width: 520px) {
-    flex-direction: column;
-  }
-
-  /* @media (max-width: 760px) {
-  } */
+  margin-top: 2rem;
 
   > div {
     width: 30%;
@@ -73,18 +94,14 @@ const Filtros = styled.nav`
   }
 
   ul {
-    @media (max-width: 520px) {
-      width: 100%;
-    }
     margin-bottom: 1.2rem;
-
     width: 30%;
     height: 3rem;
-
     display: flex;
     list-style: none;
     justify-content: center;
     align-items: center;
+
     li {
       display: flex;
       justify-content: center;
@@ -97,6 +114,7 @@ const Filtros = styled.nav`
         color: #222222;
       }
     }
+
     .active {
       color: #222222;
       padding-top: 0.4rem;
@@ -105,5 +123,17 @@ const Filtros = styled.nav`
       width: 6rem;
       height: 2rem;
     }
+
+    @media (max-width: 1080px) {
+      width: 68%;
+    }
+
+    @media (max-width: 520px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 520px) {
+    flex-direction: column;
   }
 `;
