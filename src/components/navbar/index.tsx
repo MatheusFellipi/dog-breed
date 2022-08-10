@@ -9,11 +9,22 @@ export function Navbar() {
         <div className="logo">
           <Image src={"/dog-logo.jpg"} width={70} height={70} alt={"logo"} />
         </div>
+        
         <nav>
           <ActiveLink activeClassName={"active"} href="/dashboard">
             <a>Home</a>
           </ActiveLink>
         </nav>
+
+        <div>
+          perfil 
+          abrir um menu
+          <ul>
+            <li>Favoritos</li>
+            <li>Config</li>
+            <li>Sair</li>
+          </ul>
+        </div>
       </div>
     </Header>
   );
