@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Image from "next/future/image";
 
 import { useState } from "react";
 import LoadingSpinner from "../Loading";
@@ -14,7 +13,6 @@ export function ImagePresentation({
   data,
   isFetching,
 }: ImagePresentationProps) {
-  
   const [selectImg, setSelectImg] = useState("");
   const [isOpenModal, setIsOpenModal] = useState(false);
 
