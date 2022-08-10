@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { type } from "os";
 import { InputHTMLAttributes } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -19,91 +18,66 @@ export function Input({
   }
 
   return (
-    <Label className="form__group field">
+    <Label className="form-group">
       <input
-        className="form__field"
+        type={type}
+        className="form-control rounded-left"
+        placeholder={label}
+        value={value}
         name={name}
-        {...rest}
         onChange={onChange}
       />
-      <label htmlFor={label} className="form__label">
-        {label}
-      </label>
     </Label>
   );
 }
 
-const Label = styled.fieldset`
-  border: none;
-  position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
-  width: 100%;
-
-  .form__field {
-    font-family: inherit;
+const Label = styled.div`
+  .form-control {
+    height: 48px;
+    background: rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    box-shadow: none;
+    border: 1px solid transparent;
+    padding-left: 20px;
+    padding-right: 20px;
     width: 100%;
-    border: 0;
-    border-bottom: 2px solid #9b9b9b;
-    outline: 0;
-    font-size: 1.3rem;
-    color: #fff;
-    padding: 7px 0;
-    background: transparent;
-    transition: border-color 0.2s;
-
-    &::placeholder {
-      color: transparent;
+    &::-webkit-input-placeholder {
+      color: rgba(0, 0, 0, 0.2);
     }
-
-    &:placeholder-shown ~ .form__label {
-      font-size: 1.3rem;
-      cursor: text;
-      top: 20px;
+    &::-moz-placeholder {
+      color: rgba(0, 0, 0, 0.2);
     }
-  }
-
-  .form__label {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: #9b9b9b;
-  }
-
-  .form__field:focus {
-    ~ .form__label {
-      position: absolute;
-      top: 0;
-      display: block;
-      transition: 0.2s;
-      font-size: 1rem;
-      color: #11998e;
-      font-weight: 700;
+    &:-ms-input-placeholder {
+      color: rgba(0, 0, 0, 0.2);
     }
-    padding-bottom: 6px;
-    font-weight: 700;
-    border-width: 3px;
-    border-image: linear-gradient(to right, #11998e, #38ef7d);
-    border-image-slice: 1;
-  }
-  /* reset input */
-  .form__field {
-    &:required,
-    &:invalid {
+    &:-moz-placeholder {
+      color: rgba(0, 0, 0, 0.2);
+    }
+    &:focus,
+    &:active {
+      outline: none;
       box-shadow: none;
+      background: rgba(0, 0, 0, 0.07);
+      border-color: transparent;
     }
   }
-  /* demo */
-  body {
-    font-family: "Poppins", sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-size: 1.5rem;
-    background-color: #222222;
+
+  .rounded-left {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+  }
+
+  .form-group {
+    position: relative;
+    .submit {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      @include media-breakpoint-down(sm) {
+        top: 0;
+      }
+    }
   }
 `;
