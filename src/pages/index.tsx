@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
 import { FormEvent, useState } from "react";
 import styled from "@emotion/styled";
@@ -72,11 +73,10 @@ const Home: NextPage = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <Image
+              <img
                 src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"
                 alt=""
-                width={"95.5px"}
-                height={"28px"}
+              
               />
             </a>
             <a
@@ -84,9 +84,8 @@ const Home: NextPage = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <Image
-                width={"111px"}
-                height={"28px"}
+              <img
+            
                 src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
                 alt=""
               />
