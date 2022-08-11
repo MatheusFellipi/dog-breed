@@ -23,7 +23,6 @@ const Home: NextPage = () => {
     event.preventDefault();
 
     api.post("/register", values).then((res) => {
-      console.log(res.data);
       signin(res.data);
     });
   }
