@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 import { FormEvent, useState } from "react";
 import styled from "@emotion/styled";
-
+import Image from "next/image";
+import Lottie from "lottie-react";
 import { Input } from "../components/input";
 import { Button } from "../components/button";
-
 import { api } from "../services/axios";
 import { useAuth } from "../hook/useAuth";
-import Image from "next/image";
+import dogAnimation from "../../my-dog-and-me.json";
 
 type InitialValue = {
   email: string;
@@ -16,6 +16,11 @@ type InitialValue = {
 const Home: NextPage = () => {
   const { signin } = useAuth();
   const initialValue = {} as InitialValue;
+
+  const [animationState, setAnimationState] = useState({
+    isStopped: false,
+    isPaused: false,
+  });
 
   const [values, setValues] = useState<InitialValue>(initialValue);
 
@@ -40,16 +45,55 @@ const Home: NextPage = () => {
 
   return (
     <Container>
-      <form method="post" onSubmit={handleSubmit}>
-        <Input
-          name="email"
-          label="Email"
-          type="email"
-          value={values.email}
-          onChange={handleChanger}
-        />
-        <Button label="Entra" type="submit" />
-      </form>
+      <section>
+        <div className="hero_container">
+          <Lottie className="hero" animationData={dogAnimation} />
+        </div>
+
+        <form method="post" onSubmit={handleSubmit}>
+          <div className="form_container">
+            <fieldset>
+              <span>Entra com o email</span>
+              <Input
+                name="email"
+                label="Email"
+                type="email"
+                value={values.email}
+                onChange={handleChanger}
+              />
+            </fieldset>
+            <Button label="Entra" type="submit" />
+            <span>nao possui conta? cadastre</span>
+          </div>
+
+          <footer>
+            <a
+              href="https://github.com/MatheusFellipi"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"
+                alt=""
+                width={"95.5px"}
+                height={"28px"}
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/matheusfellipiribeiro/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                width={"111px"}
+                height={"28px"}
+                src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
+                alt=""
+              />
+            </a>
+          </footer>
+        </form>
+      </section>
     </Container>
   );
 };
@@ -60,23 +104,77 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 
   height: 100vh;
   width: 100vw;
-  > form {
+
+  section {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: space-between;
-    border: solid 1px;
-
-    background-color: #ffffff;
-    padding: 1rem;
-    max-width: 550px;
-    width: 350px;
-    height: 250px;
-
     border-radius: 1rem;
+    width: 60%;
+    height: 70%;
+    box-shadow: 0px -1px 20px 1px rgba(0, 0, 0, 0.486);
+
+    .hero_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+      .hero {
+        border-radius: 1rem;
+        width: 70%;
+      }
+      @media (max-width: 1080px) {
+        display: none;
+        width: 0%;
+      }
+    }
+
+    > form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+      background-color: #eeeeee;
+      padding: 1rem;
+      width: 50%;
+      height: 100%;
+      border-radius: 0 1rem 1rem 0;
+      .form_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 60%;
+        span {
+          margin: 0.5rem 0;
+          width: 100%;
+          font-size: 12px;
+          text-align: start;
+        }
+        fieldset {
+          margin-bottom: 5rem;
+          border: none;
+          width: 100%;
+        }
+      }
+      footer {
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      @media (max-width: 1080px) {
+        width: 100%;
+      }
+    }
   }
 `;
