@@ -1,14 +1,26 @@
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../../../hook/useAuth";
+import { useStorage } from "../../../../hook/useStorage";
 
 export function Profile() {
-  const { user, signout } = useAuth();
+  const { signout } = useAuth();
+  const { getItem } = useStorage();
+  const [user] = useState(() => {
+    const sessionStorage = getItem("dogbreed:user", "session");
+    let str;
+
+    if (sessionStorage) {
+      str = JSON.parse(sessionStorage);
+    }
+    return str;
+  });
 
   return (
     <Dropdown className="dropdown">
       <button className="dropbtn">
         <img src="https://i.pinimg.com/564x/be/b9/ac/beb9aca758ed0e6e292b22ce1c21d3cf.jpg" />
-        <p>{user.user.email}</p>
+        <p>{user?.user?.email}</p>
       </button>
       <div className="dropdown-content">
         <a href="#">Favoritos</a>
@@ -30,18 +42,16 @@ const Dropdown = styled.div`
 
   .dropbtn {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: transparent;
-    padding: 16px;
-    font-size: 16px;
     border: none;
-    width: 250px;
+    width: 190px;
 
+    p {
+      margin-top: -1rem;
+    }
     img {
-      p{
-        font-size: 0.6rem;
-      }
       width: 40px;
       height: 40px;
       border-radius: 50px;
