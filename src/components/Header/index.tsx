@@ -1,72 +1,60 @@
 import { ActiveLink } from "./ActiveLink";
 import styled from "@emotion/styled";
 import Image from "next/image";
+import { Profile } from "./ActiveLink/Profile/inidex";
+import { Input } from "../input";
 
-export function Navbar() {
+export function Header() {
   return (
-    <Header>
+    <HeaderContainer>
       <div className={"headerContext"}>
         <div className="logo">
-          <Image src={"/dog-logo.jpg"} width={70} height={70} alt={"logo"} />
+          <Image src="/dog_logo.png" width={70} height={70} alt={"logo"} />
         </div>
-        
-        <nav>
+
+        {/* <nav>
           <ActiveLink activeClassName={"active"} href="/dashboard">
             <a>Home</a>
           </ActiveLink>
-        </nav>
-
-        <div>
-          perfil 
-          abrir um menu
-          <ul>
-            <li>Favoritos</li>
-            <li>Config</li>
-            <li>Sair</li>
-          </ul>
+          <ActiveLink activeClassName={"active"} href="#">
+            <a>Home</a>
+          </ActiveLink>
+          <ActiveLink activeClassName={"active"} href="#">
+            <a>Home</a>
+          </ActiveLink>
+          <ActiveLink activeClassName={"active"} href="#">
+            <a>Home</a>
+          </ActiveLink>
+        </nav> */}
+        
+        <div className="profile">
+          <Input label="Pesquisar" />
+          <Profile />
         </div>
       </div>
-    </Header>
+    </HeaderContainer>
   );
 }
 
-const Header = styled.header`
-  height: 5rem;
-
+const HeaderContainer = styled.header`
+  .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .logo {
     z-index: 50000;
     margin-right: 10%;
   }
 
   .headerContext {
-    max-width: 1220px;
+    max-width: 1520px;
     height: 5rem;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 0.5rem;
     display: flex;
     align-items: center;
-
-    &::after {
-      top: 59px;
-      content: " ";
-      height: 2px;
-      border-radius: 3px 3px 0 0;
-      width: 100%;
-      position: absolute;
-      bottom: 1px;
-      left: 0;
-      background-color: #603435;
-
-      @media (min-width: 1440px) {
-        top: 61px;
-      }
-      @media (max-width: 768px) {
-        top: 61px;
-      }
-      @media (max-width: 560px) {
-        top: 57px;
-      }
-    }
+    justify-content: space-between;
 
     nav {
       margin-left: 4rem;
@@ -99,9 +87,6 @@ const Header = styled.header`
           background-color: #00caee;
         } */
       }
-    }
-    button {
-      margin-left: auto;
     }
   }
 `;
