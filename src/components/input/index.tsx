@@ -33,6 +33,8 @@ export function Input({
 }
 
 const Label = styled.div`
+    width: 100%;
+
   .form-control {
     height: 48px;
     background: rgba(0, 0, 0, 0.05);
