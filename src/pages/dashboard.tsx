@@ -1,10 +1,9 @@
 import type { NextPage } from "next";
-import { Navbar } from "../components/navbar";
+import { Header } from "../components/Header";
 import { useFetch } from "../hook/useFetch";
 import { parseCookies } from "nookies";
 import styled from "@emotion/styled";
 import { ImagePresentation } from "../components/ImagePresentation";
-import { Input } from "../components/input";
 import { useState } from "react";
 
 const Dashboard: NextPage = () => {
@@ -22,13 +21,9 @@ const Dashboard: NextPage = () => {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Header></Header>
 
       <Filtros>
-        <div>
-          <Input label="Pesquisar" />
-        </div>
-
         <ul>
           <li
             onClick={() => {
