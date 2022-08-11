@@ -26,7 +26,7 @@ export function Header() {
             <a>Home</a>
           </ActiveLink>
         </nav> */}
-        
+
         <div className="profile">
           <Input label="Pesquisar" />
           <Profile />
@@ -45,6 +45,9 @@ const HeaderContainer = styled.header`
   .logo {
     z-index: 50000;
     margin-right: 10%;
+    @media (max-width: 520px) {
+      display: none;
+    }
   }
 
   .headerContext {
