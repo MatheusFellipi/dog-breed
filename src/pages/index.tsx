@@ -69,7 +69,7 @@ const Home: NextPage = () => {
 
           <footer>
             <a
-              href="https://github.com/MatheusFellipi"
+              href="https://github.com/MatheusFellipi/dog-breed"
               target="_blank"
               rel="noreferrer"
             >
