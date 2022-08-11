@@ -1,6 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-
 import { Global, css } from "@emotion/react";
+import Script from "next/script";
+
 const GlobalStyles = css`
   * {
     margin: 0;
@@ -12,7 +13,12 @@ const GlobalStyles = css`
     background: #fff;
     -webkit-font-smoothing: antialiased;
   }
-
+  a {
+    text-decoration: none;
+  }
+  li {
+    list-style: none;
+  }
   html {
     @media (max-width: 1080px) {
       font-size: 93.75%; /*15px*/
@@ -65,11 +71,14 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto:wght@400;500;700&display=swap"
             rel="stylesheet"
           />
+         
         </Head>
         <body>
           <Main />
           <NextScript />
           <Global styles={GlobalStyles} />
+
+     
         </body>
       </Html>
     );
