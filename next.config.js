@@ -5,7 +5,7 @@ const nextConfig = {
   swcMinify: true,
 
   images: {
-    domains: ["images.dog.ceo"],
+    domains: ["images.dog.ceo","img.shields.io"],
   },
 };
 
