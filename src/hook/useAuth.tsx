@@ -2,9 +2,11 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { useRouter } from "next/router";
+import { useStorage } from "./useStorage";
 
 type UserType = {
   user: {
+    email: string;
     token: string;
   };
 };
@@ -23,8 +25,11 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   const route = useRouter();
+  const { removeItem, setItem } = useStorage();
+
   const usersInitial = {
     user: {
+      email: "",
       token: "",
     },
   } as UserType;
@@ -32,18 +37,19 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   const [user, setUser] = useState<UserType>(usersInitial);
 
   const signin = (data: UserType) => {
-
     setCookie(null, "dogbreed:token", data.user.token, {
       maxAge: 30 * 24 * 60 * 60,
       path: "/",
     });
     route.push("/dashboard");
     setUser(data);
+    setItem("dogbreed:user", JSON.stringify(data), "session");
   };
 
   const signout = () => {
     setUser(usersInitial);
     destroyCookie(null, "dogbreed:token");
+    removeItem("dogbreed:user", "session");
     route.push("/");
   };
 
