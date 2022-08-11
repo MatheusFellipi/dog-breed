@@ -4,7 +4,7 @@ import { InputHTMLAttributes } from "react";
 interface ButtonsProps extends InputHTMLAttributes<HTMLButtonElement> {
   type: "button" | "submit" | "reset" | undefined;
   label: string;
-};
+}
 
 export function Button({ onClick, label, type }: ButtonsProps) {
   return (
@@ -22,10 +22,9 @@ const Container = styled.div`
     color: #fff;
     border: none;
     border-radius: 10px;
-    padding: 15px;
-    min-height: 30px;
-    min-width: 150px;
     transition: 0.7s;
+    width: 6rem;
+    height: 3rem;
     :hover {
       background-color: #11998e;
     }
